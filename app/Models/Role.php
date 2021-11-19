@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Role extends Model
 {
-    
+    public $timestamps = false;
     static $rules = [
 		'nombre' => 'required',
     ];
@@ -38,6 +38,6 @@ class Role extends Model
     {
         return $this->hasMany('App\Models\EmpleadoRol', 'rol_id', 'id');
     }
-    
+
 
 }

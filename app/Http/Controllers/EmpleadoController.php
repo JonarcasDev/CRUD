@@ -33,6 +33,9 @@ class EmpleadoController extends Controller
     public function create()
     {
         $empleado = new Empleado();
+        $areas = Area::select()->get();
+        $empleado['areas'] = $areas;
+
         return view('empleado.create', compact('empleado'));
     }
 
