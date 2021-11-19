@@ -77,3 +77,5 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>
+
+<script scr="public/js/formulario.js"></script>

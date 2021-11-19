@@ -54,7 +54,7 @@
 											<td>{{ $empleado->nombre }}</td>
 											<td>{{ $empleado->email }}</td>
 											<td>{{ $empleado->sexo }}</td>
-											<td>{{ $empleado->area_id }}</td>
+											<td>{{ $empleado->area->nombre}}</td>
 											<td>{{ $empleado->boletin }}</td>
 											<td>{{ $empleado->descripcion }}</td>
 

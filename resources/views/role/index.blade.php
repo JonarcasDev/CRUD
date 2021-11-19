@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Role') }}
+                                {{ __('Roles') }}
                             </span>
 
                              <div class="float-right">
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre</th>
 
                                         <th></th>
@@ -45,7 +45,7 @@
                                     @foreach ($roles as $role)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $role->nombre }}</td>
 
                                             <td>

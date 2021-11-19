@@ -13,15 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/',  App\Http\Controllers\Auth\LoginController::class)->middleware('auth');
 
 Auth::routes();
 
-Route::resource('empleado', App\Http\Controllers\EmpleadoController::class);
-Route::resource('areas', App\Http\Controllers\AreaController::class);
-Route::resource('roles', App\Http\Controllers\RoleController::class);
+Route::resource('empleado', App\Http\Controllers\EmpleadoController::class)->middleware('auth');
+Route::resource('areas', App\Http\Controllers\AreaController::class)->middleware('auth');
+Route::resource('roles', App\Http\Controllers\RoleController::class)->middleware('auth');
 Route::resource('empleados_rol', App\Http\Controllers\EmpleadoRolController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
