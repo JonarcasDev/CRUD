@@ -71,10 +71,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $empleados->links() }}
                         </div>
                     </div>
                 </div>
-                {!! $empleados->links() !!}
             </div>
         </div>
     </div>

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 class EmpleadoRol extends Model
 {
     public $table = "empleado_rol";
+    public $timestamps = false;
     static $rules = [
 		'empleado_id' => 'required',
 		'rol_id' => 'required',

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\Role;
+use App\Models\EmpleadoRol;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class EmpleadoController
@@ -19,7 +22,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $empleados = Empleado::paginate();
+        $empleados = Empleado::paginate(15);
 
         return view('empleado.index', compact('empleados'))
             ->with('i', (request()->input('page', 1) - 1) * $empleados->perPage());
@@ -35,6 +38,9 @@ class EmpleadoController extends Controller
         $empleado = new Empleado();
         $areas = Area::select()->get();
         $empleado['areas'] = $areas;
+        $roles = Role::select()->get();
+        $empleado['roles'] = $roles;
+
 
         return view('empleado.create', compact('empleado'));
     }
@@ -49,9 +55,22 @@ class EmpleadoController extends Controller
     {
         request()->validate(Empleado::$rules);
         $req = $request->all();
-        $req['boletin'] = ($req['boletin'] == 'on') ? 1 : 0;
+
+        if(isset($req['boletin']) && $req['boletin'] == 'on') {
+            $req['boletin'] = 1;
+        }else{
+            $req['boletin'] = 0;
+        }
 
         $empleado = Empleado::create($req);
+
+        $roles = $req['rol'];
+        foreach ($roles as $rol) {
+            $empleadoRol = new EmpleadoRol();
+            $empleadoRol->empleado_id = $empleado->id;
+            $empleadoRol->rol_id = $rol;
+            $empleadoRol->save();
+        }
 
         return redirect()->route('empleado.index')
             ->with('success', 'Empleado created successfully.');
@@ -81,11 +100,15 @@ class EmpleadoController extends Controller
         $empleado = Empleado::find($id);
         $areas = Area::select()->get();
         $empleado['areas'] = $areas;
+        $roles = Role::select()
+        ->leftjoin('empleado_rol', function($join) use($id)
+        {
+            $join->on('roles.id', '=', 'empleado_rol.rol_id')
+            ->where('empleado_rol.empleado_id', $id);
+        })
+        ->get();
 
-
-        // $empleado = Empleado::select('id, nombre, email, sexo, area_id, boletin, descripcion, area')
-        // ->where('id', $id)->get();
-        //die($empleado);
+        $empleado['roles'] = $roles;
 
         return view('empleado.edit', compact('empleado'));
     }
@@ -110,6 +133,19 @@ class EmpleadoController extends Controller
         }
 
         $empleado->update($req);
+
+        $rolesEmpleado = EmpleadoRol::select()
+        ->where('empleado_id', $empleado->id);
+
+        $rolesEmpleado->delete();
+
+        $roles = $req['rol'];
+        foreach ($roles as $rol) {
+            $empleadoRol = new EmpleadoRol();
+            $empleadoRol->empleado_id = $empleado->id;
+            $empleadoRol->rol_id = $rol;
+            $empleadoRol->save();
+        }
 
         return redirect()->route('empleado.index')
             ->with('success', 'Empleado updated successfully');
