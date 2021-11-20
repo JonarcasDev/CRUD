@@ -17,7 +17,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('roles.create') }}" class="btn btn-success btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -44,7 +44,7 @@
                                 <tbody>
                                     @foreach ($roles as $role)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $role->id }}</td>
 
 											<td>{{ $role->nombre }}</td>
 
@@ -61,10 +61,13 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="d-flex justify-content-center">
+                                {{ $roles->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
-                {!! $roles->links() !!}
+
             </div>
         </div>
     </div>

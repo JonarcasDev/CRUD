@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Empleado') }}
+                                {{ __('Empleados') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('empleado.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('empleado.create') }}" class="btn btn-success btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -49,7 +49,7 @@
                                 <tbody>
                                     @foreach ($empleados as $empleado)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $empleado->id }}</td>
 
 											<td>{{ $empleado->nombre }}</td>
 											<td>{{ $empleado->email }}</td>
@@ -71,7 +71,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $empleados->links() }}
+                            <div class="d-flex justify-content-center">
+                                {{ $empleados->links() }}
+                            </div>
+
                         </div>
                     </div>
                 </div>

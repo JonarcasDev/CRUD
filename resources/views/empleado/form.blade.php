@@ -75,7 +75,9 @@
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="http://localhost:8000/empleado"><button type="button" class="btn btn-danger">Cancel</button></a>
     </div>
 </div>
+
 
 <script scr="public/js/formulario.js"></script>

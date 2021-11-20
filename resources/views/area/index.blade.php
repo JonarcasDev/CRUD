@@ -17,7 +17,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('areas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('areas.create') }}" class="btn btn-success btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Nombre</th>
 
                                         <th></th>
@@ -44,8 +44,8 @@
                                 <tbody>
                                     @foreach ($areas as $area)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
+                                            <td>{{ $area->id }}</td>
+
 											<td>{{ $area->nombre }}</td>
 
                                             <td>
@@ -61,10 +61,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="d-flex justify-content-center">
+                                {{ $areas->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
-                {!! $areas->links() !!}
             </div>
         </div>
     </div>

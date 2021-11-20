@@ -25,7 +25,7 @@
                             {{ $empleado->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Email:</strong>
+                            <strong>Correo electronico:</strong>
                             {{ $empleado->email }}
                         </div>
                         <div class="form-group">
@@ -37,15 +37,22 @@
                             {{ $empleado->area_id }}
                         </div>
                         <div class="form-group">
+                            <strong>Nombre del area:</strong>
+                            {{ $empleado->area->nombre}}
+                        </div>
+                        <div class="form-group">
                             <strong>Boletin:</strong>
                             {{ $empleado->boletin }}
                         </div>
                         <div class="form-group">
-                            <strong>Descripcion:</strong>
+                            <strong>Descripción:</strong>
                             {{ $empleado->descripcion }}
                         </div>
 
-                    </div>
+                        <div class="form-group">
+                            <strong>Roles:</strong>
+                            {{ $empleado->empleadoRols}}
+
                 </div>
             </div>
         </div>
