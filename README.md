@@ -1,3 +1,5 @@
+Tecnologias usadas( Html, Css, Php, Laravel, Mysql)
+
 ## Cómo intalar el proyecto
 
 - composer install
